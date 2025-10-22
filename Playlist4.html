@@ -1,0 +1,140 @@
+<html>
+<head>
+	<link rel="stylesheet" href="D:\Spotify\play_css.css">
+	
+	<style>
+        h1 
+	{
+        	margin: 5px;
+                padding: 30px;
+	}
+	audio
+	{
+		width: 190px;
+		height: 50px;
+	}
+	</style>
+</head>
+<body>
+
+	
+	<div>
+	<h1>MY PLAYLIST</h1>
+	</div>
+
+<div class="spotify-playlist">
+                
+                <div class="card">
+                    <div class="item">
+                        <img src="om.jpg" alt="">
+                        <div class="play-btn">
+                            <span><i class="fa-solid fa-play"></i></span>
+                        </div>
+                        <h4>OLD MONEY</h4>
+                        <P>manan bhrdwaj, vishal mishra, janni</P>
+	<audio controls>
+	<source src="128-Old Money - AP Dhillon 128 Kbps.mp3" type="audio/mpeg"></audio><br>
+                    </div>
+                   
+                    <div class="item">
+                        <img src="gl.jpg" alt="">
+                        <div class="play-btn">
+                            <span><i class="fa-solid fa-play"></i></span>
+                        </div>
+                        <h4>MILLIONAIRE</h4>
+                        <P>manan bhrdwaj, vishal mishra, janni</P>
+	<audio controls>
+	<source src="128-Millionaire - Glory 128 Kbps.mp3" type="audio/mpeg"></audio>
+                    </div>
+                   
+                    <div class="item">
+                        <img src="tj.jpg" alt="">
+                        <div class="play-btn">
+                            <span><i class="fa-solid fa-play"></i></span>
+                        </div>
+                        <h4>THODI JAGAH</h4>
+                        <P>manan bhrdwaj, vishal mishra, janni</P>
+	<audio controls>
+	<source src="128-Thodi Jagah - Marjaavaan 128 Kbps.mp3" type="audio/mpeg"></audio>
+                    </div>
+                   
+                    <div class="item">
+                        <img src="ks.jpg" alt="">
+                        <div class="play-btn">
+                            <span><i class="fa-solid fa-play"></i></span>
+                        </div>
+                        <h4>TUJHE KITNA </h4>
+                        <P>manan bhrdwaj, vishal mishra, janni</P>
+	<audio controls>
+	<source src="128-Tujhe Kitna Chahne Lage - Kabir Singh 128 Kbps.mp3" type="audio/mpeg"></audio>
+                    </div>
+
+                    <div class="item">
+                        <img src="pa.jpg" alt="">
+                        <div class="play-btn">
+                            <span><i class="fa-solid fa-play"></i></span>
+                        </div>
+                        <h4>PATHAN</h4>
+                        <P>manan bhrdwaj, vishal mishra, janni</P>
+	<audio controls>
+	<source src="128-Jhoome Jo Pathaan - Pathaan 128 Kbps.mp3" type="audio/mpeg"></audio>
+                    </div>
+                </div>
+            </div>
+
+       
+
+<script>
+    let playlist = JSON.parse(localStorage.getItem("playlist")) || [];
+    const playlistContainer = document.getElementById("playlist");
+
+    function updatePlaylistUI() {
+        playlistContainer.innerHTML = "";
+        playlist.forEach((song, index) => {
+            let listItem = document.createElement("li");
+            listItem.innerHTML = `
+                ${song.title}
+                <button onclick="playPlaylistSong('${song.audio}')">▶</button>
+                <button onclick="removeFromPlaylist(${index})">❌</button>
+            `;
+            playlistContainer.appendChild(listItem);
+        });
+    }
+
+    document.querySelectorAll('.item').forEach(item => {
+        const addButton = document.createElement("button");
+        addButton.innerText = "Remove song";
+        addButton.addEventListener("click", function (e) {
+            e.stopPropagation();
+            const songTitle = item.getAttribute("data-title");
+            const songAudio = item.getAttribute("data-audio");
+
+            if (!playlist.some(song => song.audio === songAudio)) {
+                playlist.push({ title: songTitle, audio: songAudio });
+                localStorage.setItem("playlist", JSON.stringify(playlist));
+                updatePlaylistUI();
+            }
+        });
+
+        item.appendChild(addButton);
+    });
+
+    function playPlaylistSong(audioSrc) {
+        if (currentAudio) {
+            currentAudio.pause();
+        }
+        currentAudio = new Audio(audioSrc);
+        currentAudio.play();
+    }
+
+    function removeFromPlaylist(index) {
+        playlist.splice(index, 1);
+        localStorage.setItem("playlist", JSON.stringify(playlist));
+        updatePlaylistUI();
+    }
+
+
+    updatePlaylistUI();
+</script>
+</body>
+</html>

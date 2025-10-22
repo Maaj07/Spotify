@@ -1,0 +1,131 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+	h1{
+	  color: white;
+	   font-size: 70px;
+	}
+	
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+	
+
+        .cover-page {
+            text-align: center;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        .div {
+            width: 10px;
+            height: 100px;
+            opacity: 0;
+            animation: logoFadeIn 2s ease-out forwards;
+        }
+
+        .buttons-container {
+            margin-top: 30px;
+        }
+
+        .button {
+            background-color: #1db954;
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            margin: 10px;
+            font-size: 20px;
+            border-radius: 100px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: buttonSlideIn 1s ease-out forwards;
+        }
+
+        .button:hover {
+            background-color: #1ed760;
+        }
+
+        #homeButton {
+            animation-delay: 1s;
+        }
+
+        #signInButton {
+            animation-delay: 1.2s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes logoFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes buttonSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+	
+        }
+    </style>
+</head>
+<body>
+    <div class="cover-page">
+        <div class="logo-container">
+		<div>
+            <img src="D:\Spotify\item-11.png">
+		</div>
+        </div>
+	<h1>SPOTIFY</h1>
+        <div class="buttons-container">
+            <a href="D:\Spotify\Home5.html"><button id="homeButton" class="button">Home</button>
+            <a href="D:\Spotify\Sign_in3.html"><button id="signInButton" class="button">Sign In</button>
+        </div>
+    </div>
+
+    <script>
+        // Adding interactivity to the buttons
+        document.getElementById('homeButton').addEventListener('click', function() {
+            alert('Home button clicked');
+            // You can replace this with window.location.href to navigate to a new page
+        });
+
+        document.getElementById('signInButton').addEventListener('click', function() {
+            alert('Sign In button clicked');
+            // You can replace this with window.location.href to navigate to the sign-in page
+        });
+    </script>
+</body>
+</html>

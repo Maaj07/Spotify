@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #181818, #181818);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+	    border: 1px solid #333;
+            background: #333;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 8px 0 5px;
+            font-size: 14px;
+            color: white;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #1DB954;
+            outline: none;
+            box-shadow: 0 0 5px rgba(29, 185, 84, 0.5);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 16px;
+            color: #777;
+        }
+
+        .gender-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .checkbox input {
+            margin-right: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1DB954;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #17a54a;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 450px) {
+            .container {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" class="logo" alt="Spotify Logo">
+        <h1>Sign Up</h1>
+
+        	<form action="Home5.html">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+            <p id="email-error" class="error"></p>
+
+            <label for="password">Password</label>
+            <div class="password-container">
+                <input type="password" id="password" name="password" required>
+                <span class="toggle-password" onclick="togglePassword()">👁</span>
+            </div>
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label>Gender</label>
+            <div class="gender-options">
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female" required> Female</label>
+                <label><input type="radio" name="gender" value="non-binary" required> Non-binary</label>
+            </div>
+
+           
+            <a href="D:/Spotify/trial1.html"><button>Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        // Email Validation
+        document.getElementById("email").addEventListener("input", function() {
+            const email = this.value;
+            const emailError = document.getElementById("email-error");
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                emailError.textContent = "Please enter a valid email.";
+            } else {
+                emailError.textContent = "";
+            }
+        });
+
+        // Show/Hide Password
+        function togglePassword() {
+            const passwordInput = document.getElementById("password");
+            const icon = document.querySelector(".toggle-password");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.textContent = "🙈";
+            } else {
+                passwordInput.type = "password";
+                icon.textContent = "👁";
+            }
+        }
+
+        // Form Submission Alert
+        document.getElementById("registration-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Registration successful!");
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
